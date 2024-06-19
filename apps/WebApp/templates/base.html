@@ -47,10 +47,103 @@
         </div>
     </nav>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Iniciar Sesión</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted"></small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Ingresar</button>
+            <button type="button" class="btn btn-primary">¿No puedes iniciar sesión?</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     {% block body %}
 
     {% endblock %}
+
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+      <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Carrito de Compra</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+          <p id="mensajeCarrito">Aquí aparecerán tus retiros programados</p>
+          <ul id="listaRetiros"></ul>
+          <p id="totalCarrito"></p>
+      </div>
+  </div>
+
+    <footer class="pie-pagina">
+      <div class="row">
+          <div class="col-lg-4 col-md-4 mb-4 mb-md-0">
+              <img id="logo-pie" src="img/logo.png" alt="logo">
+              <p class="slogan">
+                  "Tu aliado en el reciclaje rápido y sostenible."
+              </p>
+          </div>
+          <div class="col-lg-4 col-md-4 mb-4 mb-md-0">
+              <ul class="list-unstyled mb-0">
+                  <li>
+                      <h5>Navegación</h5>
+                  </li>
+                  <li>
+                      <a href="Index.html" class="text-dark">Inicio</a>
+                  </li>
+                  <li>
+                      <a href="Quienes_somos.html" class="text-dark">Quiénes Somos</a>
+                  </li>
+                  <li>
+                      <a href="Registro.html" class="text-dark">Registro</a>
+                  </li>
+                  <li>
+                      <a href="Cotizador.html" class="text-dark">Cotizador</a>
+                  </li>
+              </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <ul class="redes-sociales">
+                  <li>
+                      <h5>Redes Sociales</h5>
+                  </li>
+                  <li class="icon-container">
+                      <a href="https://facebook.com">
+                          <img src="img/facebook.png" alt="Facebook">
+                      </a>
+                      <a href="https://instagram.com">
+                          <img src="img/instagram.png" alt="Instagram">
+                      </a>
+                      <a href="https://whatsapp.com">
+                          <img src="img/whatsapp.png" alt="WhatsApp">
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    <div class="footer-line"></div> 
+    <div class="footer-text"> 
+        RECYCLE EXPRESS © 2024
+    </div>
+  </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
