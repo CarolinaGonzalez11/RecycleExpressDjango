@@ -1,4 +1,32 @@
+ /*Estilo del Carrusel */ 
+ #custom-carousel {
+    height: 20px; /* Ajusta este valor para cambiar la altura del carrusel */
+    position: absolute;
+    color: white;
+}
 
+ #custom-carousel .carousel-item {
+    height: 10px; /* Ajusta este valor para cambiar la altura del carrusel */
+    position: absolute;
+    color: white;
+}
+#custom-carousel .carousel-item img {
+    width: 10%;
+    height: 10%; /* Asegura que las imágenes ocupen toda la altura del contenedor */
+    object-fit: fill; /* Asegura que las imágenes se ajusten bien al contenedor */
+}
+#custom-carousel .carousel-control-prev,
+#custom-carousel .carousel-control-next {
+    width: 5%; /* Ajusta este valor para cambiar el tamaño de los controles */
+}
+#custom-carousel .carousel-control-prev-icon,
+#custom-carousel .carousel-control-next-icon {
+    width: 10%;
+    height: 10%;
+}
+
+
+ 
  /*Estilo del Navbar */ 
 .navbar{
     background-color: rgba(237, 223, 223, 0.5);
