@@ -3,13 +3,13 @@ from django.urls import path
 from . import views 
 
 urlpatterns = [
-    path('',views.cargarInicio),
+    path('',views.cargarInicio, name="Inicio"),
 
-    path('registro/',views.cargarRegistro ),
+    path('registro/',views.cargarRegistro, name="Registro" ),
 
-    path('QuienesSomos/',views.cargarQuienesSomos),
+    path('QuienesSomos/',views.cargarQuienesSomos, name="QuienesSomos"),
 
-    path('preguntas/',views.cargarPreguntas),
+    path('preguntas/',views.cargarPreguntas, name="Preguntas"),
 
-    path('Cotizador/',views.cargarCotizador),
+    path('Cotizador/',views.cargarCotizador, name="Cotizador"),
 ]

@@ -6,18 +6,15 @@
         <div class="input-group col-lg-6 mb-3">
             <div class="comuna">
                 <label for="comuna">Comuna</label>
+                {% for p in comuna  %}  
                 <select class="form-select" id="comuna" name="comuna">
-                    <option value="0" selected disabled>Seleccionar tipo</option>
-                    <option value="1">Santiago</option>
-                    <option value="2">Maipú</option>
-                    <option value="3">Pudahuel</option>
-                    <option value="4">Renca</option>
-                    <option value="5">Ñuñoa</option>
-                    <option value="6">Las Condes</option>
-                    <option value="7">Providencia</option>
-                    <option value="8">San Miguel</option>
+                                    
+                    <option {{p.comuna}}</option>
+                    
                 </select>
+                {% endfor %}
             </div>
+
             <img src="{% static 'img/delivery.jpg' %}" alt="delivery" width="100px" height="100px">
             <div class="Material">
                 <label for="material">Material</label>

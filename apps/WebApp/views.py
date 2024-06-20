@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import Comuna
 # Create your views here.
 
 
@@ -16,4 +16,8 @@ def cargarPreguntas(request):
     return render(request,"preguntas.html")
 
 def cargarCotizador(request):
-    return render(request,"cotizador.html")
+    comuna = Comuna.objects.all()
+    data = {
+        'comunas': comuna
+    }
+    return render(request,"cotizador.html", data)
