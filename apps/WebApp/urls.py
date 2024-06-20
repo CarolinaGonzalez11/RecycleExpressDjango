@@ -1,7 +1,7 @@
 
 from django.urls import path
 from . import views 
-from .views import login_view
+from .views import login_view, logout_view
 
 urlpatterns = [
     path('',views.cargarInicio, name="Inicio"),
@@ -15,4 +15,6 @@ urlpatterns = [
     path('Cotizador/',views.cargarCotizador, name="Cotizador"),
     
     path('login/', login_view, name='login'),
+
+    path('logout/', logout_view, name='logout'),
 ]

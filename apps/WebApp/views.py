@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Comuna, Material
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+
 from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
@@ -30,16 +31,33 @@ def cargarCotizador(request):
     return render(request, "cotizador.html", data)
 
 def login_view(request):
+    
+    error = ''
+    
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('inicio')  # Redirige a la página de inicio u otra página deseada
-    else:
-        form = AuthenticationForm()
-    return render(request, 'base.html', {'form': form})
+        
+        usuario = request.POST.get('usuario')
+        contra = request.POST.get('password')
+
+        if len(usuario) < 1:
+            error += 'Debe ingresar nombre de usuario.'
+
+        if len(contra) < 1:
+            error += 'Debe ingresar contraseña.'
+
+        user = authenticate(username = usuario,password = contra)
+
+        if user is None:
+            error += 'Las credenciales no son validas.'
+        else: 
+            login(request,user)
+            return redirect('inicio')
+
+
+    return render(request,'login.html',{"error":error})
+
+def logout_view(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect('Inicio')
 
