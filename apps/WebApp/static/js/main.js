@@ -1,3 +1,8 @@
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     cargarCarrito();
     const btnCarrito = document.getElementById('btn-carrito');

@@ -3,159 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% block head %}
-
-    {% endblock %}
     <title>Document</title>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid" style="font-weight: bold;">
-          <a class="navbar-brand" href="{% url 'Inicio' %}"><img src="{% static 'img/logo.png' %}" alt="logo" height="48"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand" href="{% url 'Inicio' %}"><img src="{% static 'img/logo.png' %}" alt="logo" height="48"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'Inicio' %}">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'QuienesSomos' %}">Quiénes Somos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'Registro' %}">Registro</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'Cotizador' %}">Cotizador</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'Preguntas' %}">Preguntas Frecuentes</a>
-          </li>
-                
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Inicio' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'QuienesSomos' %}">Quiénes Somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Registro' %}">Registro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Cotizador' %}">Cotizador</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Preguntas' %}">Preguntas Frecuentes</a></li>
                 </ul>
-                
+
                 <a id="btn-carrito" class="nav-item btn-iniciar" href="#"><img src="{% static 'img/carrito.png' %}" height="30"></a>
-                <button type="button" class="btn btn-primary btn-iniciar" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Iniciar Sesión
-                </button>
-                
-                
-          </div>
+
+                {% if user.is_authenticated %}
+                    <span class="navbar-text">¡Bienvenido, {{ user.username }}!</span>
+                    <button type="button" class="btn btn-primary btn-iniciar" onclick="window.location.href='{% url 'logout' %}'">Cerrar Sesión</button>
+                {% else %}
+                    <button type="button" class="btn btn-primary btn-iniciar" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</button>
+                {% endif %}
+            </div>
         </div>
     </nav>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Iniciar Sesión</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <form method="POST" action="{% url 'login' %}">
-                      {% csrf_token %}
-                      <div class="form-group">
-                          <label for="username">Nombre de usuario</label>
-                          <input type="text" class="form-control" id="username" name="username" placeholder="Introduce tu usuario">
-                      </div>
-                      <div class="form-group">
-                          <label for="password">Contraseña</label>
-                          <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
-                      </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" class="btn btn-primary">Ingresar</button>
-              </div>
-                  </form>
-          </div>
-      </div>
-  </div>
-
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Iniciar Sesión</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Introduce tu usuario" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+                        </div>
+                        {% if messages %}
+                            <div class="alert alert-danger mt-2" role="alert">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
 
     {% block body %}
-
     {% endblock %}
-
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-      <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Carrito de Compra</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-          <p id="mensajeCarrito">Aquí aparecerán tus retiros programados</p>
-          <ul id="listaRetiros"></ul>
-          <p id="totalCarrito"></p>
-      </div>
-  </div>
 
     <footer class="pie-pagina">
-      <div class="row">
-          <div class="col-lg-4 col-md-4 mb-4 mb-md-0">
-              <img id="logo-pie" src="{% static 'img/logo.png' %}" alt="logo">
-              <p class="slogan">
-                  "Tu aliado en el reciclaje rápido y sostenible."
-              </p>
-          </div>
-          <div class="col-lg-4 col-md-4 mb-4 mb-md-0">
-              <ul class="list-unstyled mb-0">
-                  <li>
-                      <h5>Navegación</h5>
-                  </li>
-                  <li>
-                      <a href="{% url 'Inicio' %}" class="text-dark">Inicio</a>
-                  </li>
-                  <li>
-                      <a href="{% url 'QuienesSomos' %}" class="text-dark">Quiénes Somos</a>
-                  </li>
-                  <li>
-                      <a href="{% url 'Registro' %}" class="text-dark">Registro</a>
-                  </li>
-                  <li>
-                      <a href="{% url 'Cotizador' %}" class="text-dark">Cotizador</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'Preguntas' %}" class="text-dark">Preguntas Frecuentes</a>
-                </li>
-              </ul>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <ul class="redes-sociales">
-                  <li>
-                      <h5>Redes Sociales</h5>
-                  </li>
-                  <li class="icon-container">
-                      <a href="https://facebook.com">
-                          <img src="{% static 'img/facebook.png' %}" alt="Facebook">
-                      </a>
-                      <a href="https://instagram.com">
-                          <img src="{% static 'img/instagram.png' %}" alt="Instagram">
-                      </a>
-                      <a href="https://whatsapp.com">
-                          <img src="{% static 'img/whatsapp.png' %}" alt="WhatsApp">
-                      </a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-    </div>
-    <div class="footer-line"></div> 
-    <div class="footer-text"> 
-        RECYCLE EXPRESS © 2024
-    </div>
-  </footer>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 mb-4 mb-md-0">
+                <img id="logo-pie" src="{% static 'img/logo.png' %}" alt="logo">
+                <p class="slogan">"Tu aliado en el reciclaje rápido y sostenible."</p>
+            </div>
+            <div class="col-lg-4 col-md-4 mb-4 mb-md-0">
+                <ul class="list-unstyled mb-0">
+                    <li><h5>Navegación</h5></li>
+                    <li><a href="{% url 'Inicio' %}" class="text-dark">Inicio</a></li>
+                    <li><a href="{% url 'QuienesSomos' %}" class="text-dark">Quiénes Somos</a></li>
+                    <li><a href="{% url 'Registro' %}" class="text-dark">Registro</a></li>
+                    <li><a href="{% url 'Cotizador' %}" class="text-dark">Cotizador</a></li>
+                    <li><a href="{% url 'Preguntas' %}" class="text-dark">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <ul class="redes-sociales">
+                    <li><h5>Redes Sociales</h5></li>
+                    <li class="icon-container">
+                        <a href="https://facebook.com"><img src="{% static 'img/facebook.png' %}" alt="Facebook"></a>
+                        <a href="https://instagram.com"><img src="{% static 'img/instagram.png' %}" alt="Instagram"></a>
+                        <a href="https://whatsapp.com"><img src="{% static 'img/whatsapp.png' %}" alt="WhatsApp"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-line"></div>
+        <div class="footer-text">RECYCLE EXPRESS © 2024</div>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        // Abrir el modal si hay mensajes de error
+        document.addEventListener("DOMContentLoaded", function() {
+            if (document.querySelector('.alert-danger')) {
+                var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                myModal.show();
+            }
+        });
+    </script>
     
     {% block script %}
-
     {% endblock %}
-
 </body>
 </html>
+
