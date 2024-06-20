@@ -2,18 +2,16 @@
 {% load static %}
 {% block body %}
 <div>
-        <h2 id="Cotizador">Cotiza con nosotros</h2>
-        <div class="input-group col-lg-6 mb-3">
-            <div class="comuna">
-                <label for="comuna">Comuna</label>
-                {% for p in comuna  %}  
-                <select class="form-select" id="comuna" name="comuna">
-                                    
-                    <option {{p.comuna}}</option>
-                    
-                </select>
+    <h2 id="Cotizador">Cotiza con nosotros</h2>
+    <div class="input-group col-lg-6 mb-3">
+        <div class="comuna">
+            <label for="comuna">Comuna</label>
+            <select class="form-select" id="comuna" name="comuna">
+                {% for p in comuna %}
+                    <option value="{{ p.comuna.valorC }}">{{ p.comuna }}</option>
                 {% endfor %}
-            </div>
+            </select>
+        </div>
 
             <img src="{% static 'img/delivery.jpg' %}" alt="delivery" width="100px" height="100px">
             <div class="Material">
