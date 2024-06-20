@@ -16,12 +16,12 @@ def cargarPreguntas(request):
     return render(request,"preguntas.html")
 
 def cargarCotizador(request):
-    comuna = Comuna.objects.all()
+    comunas = Comuna.objects.all()
+    materiales = Material.objects.all()
+    
     data = {
-        'comunas': comuna
+        'comunas': comunas,
+        'materiales': materiales
     }
-    material = Material.objects.all()
-    dato = {
-        'materiales': material
-    }
-    return render(request,"cotizador.html", data,dato)
+    
+    return render(request, "cotizador.html", data)

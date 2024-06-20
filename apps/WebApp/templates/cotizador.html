@@ -18,7 +18,7 @@
                 <label for="material">Material</label>
                 <select class="form-select" id="material" name="material">
                     {% for i in materiales %}
-                    <option value="{{ p.valorM }}">{{ p.nombre | capfirst }}</option>
+                    <option value="{{ p.valorM }}">{{ i.nombre | capfirst }}</option>
                 {% endfor %}
                 </select>
             </div>
