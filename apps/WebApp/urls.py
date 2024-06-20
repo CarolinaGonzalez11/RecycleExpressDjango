@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('QuienesSomos/',views.cargarQuienesSomos),
 
-    path('preguntas/,',views.cargarPreguntas),
+    path('preguntas/',views.cargarPreguntas),
 
     path('Cotizador/',views.cargarCotizador),
 ]

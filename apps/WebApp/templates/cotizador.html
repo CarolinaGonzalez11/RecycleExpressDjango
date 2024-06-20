@@ -1,5 +1,65 @@
 {% extends './base.html' %}
-
+{% load static %}
 {% block body %}
-        <h1>Hola</h1>
+<div>
+        <h2 id="Cotizador">Cotiza con nosotros</h2>
+        <div class="input-group col-lg-6 mb-3">
+            <div class="comuna">
+                <label for="comuna">Comuna</label>
+                <select class="form-select" id="comuna" name="comuna">
+                    <option value="0" selected disabled>Seleccionar tipo</option>
+                    <option value="1">Santiago</option>
+                    <option value="2">Maipú</option>
+                    <option value="3">Pudahuel</option>
+                    <option value="4">Renca</option>
+                    <option value="5">Ñuñoa</option>
+                    <option value="6">Las Condes</option>
+                    <option value="7">Providencia</option>
+                    <option value="8">San Miguel</option>
+                </select>
+            </div>
+            <img src="{% static 'img/delivery.jpg' %}" alt="delivery" width="100px" height="100px">
+            <div class="Material">
+                <label for="material">Material</label>
+                <select class="form-select" id="material" name="material">
+                    <option value="0" selected disabled>Seleccionar tipo</option>
+                    <option value="1">Plástico</option>
+                    <option value="2">Cartón</option>
+                    <option value="3">Material Orgánico</option>
+                    <option value="4">Metal</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="input-group col-lg-6 mb-3">
+        <div class="Altura">
+            <label for="altura">Altura</label>
+            <input type="number" class="input" id="altura" name="altura" placeholder="cm">
+        </div>
+        <div class="Ancho">
+            <label for="ancho">Ancho</label>
+            <input type="number" class="input" id="ancho" name="ancho" placeholder="cm">
+        </div>
+        <div class="Largo">
+            <label for="largo">Largo</label>
+            <input type="number" class="input" id="largo" name="largo" placeholder="cm">
+        </div>
+    </div>
+    <button id="calcularBtn" type="button" data-bs-toggle="modal" data-bs-target="#modal-resultado">Calcular</button>
+    <div class="modal fade" id="modal-resultado" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="resultado-coti">El valor es: $0</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="agregarCarritoBtn">Agregar a carrito</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
