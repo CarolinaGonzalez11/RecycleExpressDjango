@@ -7,8 +7,8 @@
         <div class="comuna">
             <label for="comuna">Comuna</label>
             <select class="form-select" id="comuna" name="comuna">
-                {% for p in comuna %}
-                    <option value="{{ p.comuna.valorC }}">{{ p.comuna }}</option>
+                {% for p in comunas %}
+                    <option value="{{ p.valorC }}">{{ p.nombre | capfirst }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -17,11 +17,9 @@
             <div class="Material">
                 <label for="material">Material</label>
                 <select class="form-select" id="material" name="material">
-                    <option value="0" selected disabled>Seleccionar tipo</option>
-                    <option value="1">Plástico</option>
-                    <option value="2">Cartón</option>
-                    <option value="3">Material Orgánico</option>
-                    <option value="4">Metal</option>
+                    {% for i in materiales %}
+                    <option value="{{ p.valorM }}">{{ p.nombre | capfirst }}</option>
+                {% endfor %}
                 </select>
             </div>
         </div>
