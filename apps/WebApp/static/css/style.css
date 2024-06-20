@@ -1,28 +1,56 @@
  /*Estilo del Carrusel */ 
  #custom-carousel {
-    height: 20px; /* Ajusta este valor para cambiar la altura del carrusel */
-    position: absolute;
+    height: 48rem; /* Ajusta este valor para cambiar la altura del carrusel */
+    position: relative;
     color: white;
 }
 
- #custom-carousel .carousel-item {
-    height: 10px; /* Ajusta este valor para cambiar la altura del carrusel */
-    position: absolute;
+#custom-carousel .carousel-item {
+    height: 48rem; /* Ajusta este valor para cambiar la altura del carrusel */
+    position: relative;
     color: white;
 }
+
 #custom-carousel .carousel-item img {
-    width: 10%;
-    height: 10%; /* Asegura que las imágenes ocupen toda la altura del contenedor */
-    object-fit: fill; /* Asegura que las imágenes se ajusten bien al contenedor */
+    width: 100%;
+    height: 100%; /* Asegura que las imágenes ocupen toda la altura del contenedor */
+    object-fit: cover; /* Asegura que las imágenes se ajusten bien al contenedor */
 }
+
 #custom-carousel .carousel-control-prev,
 #custom-carousel .carousel-control-next {
-    width: 5%; /* Ajusta este valor para cambiar el tamaño de los controles */
+    width: auto; /* Ajusta este valor para cambiar el tamaño de los controles */
 }
+
 #custom-carousel .carousel-control-prev-icon,
 #custom-carousel .carousel-control-next-icon {
-    width: 10%;
-    height: 10%;
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilo del contenido superpuesto */
+.overlay-content {
+    position: absolute;
+    top: 0; /* Cambia este valor según sea necesario para ajustar la posición vertical */
+    left: 0;
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+    height: 100%; /* Asegura que el contenedor ocupe toda la altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mayor legibilidad */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.overlay-button {
+    position: relative;
+    background-color: green;
+    border-color: green;
 }
 
 
