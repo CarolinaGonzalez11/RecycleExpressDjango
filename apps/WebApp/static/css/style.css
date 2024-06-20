@@ -13,7 +13,7 @@
 
 #custom-carousel .carousel-item img {
     width: 100%;
-    height: 100%; /* Asegura que las imágenes ocupen toda la altura del contenedor */
+    height: 48rem; /* Asegura que las imágenes tengan la misma altura que el contenedor */
     object-fit: cover; /* Asegura que las imágenes se ajusten bien al contenedor */
 }
 
@@ -31,14 +31,14 @@
 /* Estilo del contenido superpuesto */
 .overlay-content {
     position: absolute;
-    top: 0; /* Cambia este valor según sea necesario para ajustar la posición vertical */
+    top: 0;
     left: 0;
-    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
-    height: 100%; /* Asegura que el contenedor ocupe toda la altura */
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     z-index: 10;
     color: white;
     text-align: center;
@@ -52,8 +52,6 @@
     background-color: green;
     border-color: green;
 }
-
-
  
  /*Estilo del Navbar */ 
 .navbar{
