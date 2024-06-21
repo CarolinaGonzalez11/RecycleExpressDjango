@@ -31,8 +31,8 @@ def cargarCotizador(request):
     return render(request, "cotizador.html", data)
 
 def login_view(request):
+    form = AuthenticationForm(request, data=request.POST or None)
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -43,10 +43,8 @@ def login_view(request):
                 return redirect('Inicio')
             else:
                 messages.error(request, 'Usuario o contraseña incorrectos')
-    else:
-        form = AuthenticationForm()
     return render(request, 'base.html', {'form': form})
-    
+
 def logout_view(request):
     logout(request)
     return redirect('Inicio')
