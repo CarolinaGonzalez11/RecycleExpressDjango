@@ -43,7 +43,10 @@ def login_view(request):
                 return redirect('Inicio')
             else:
                 messages.error(request, 'Usuario o contraseña incorrectos')
+        else:
+            messages.error(request, 'Usuario o contraseña incorrectos')
     return render(request, 'base.html', {'form': form})
+
 
 def logout_view(request):
     logout(request)
