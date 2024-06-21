@@ -1,15 +1,6 @@
 
 
-// Abrir el modal si hay mensajes de error
-document.addEventListener("DOMContentLoaded", function() {
-    if (document.querySelector('.alert-danger')) {
-        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
-            backdrop: 'static',
-            keyboard: false
-        });
-        myModal.show();
-    }
-});
+
 
 
 document.addEventListener('DOMContentLoaded', function() {

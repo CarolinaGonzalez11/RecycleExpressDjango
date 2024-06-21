@@ -30,46 +30,11 @@
                     <span class="navbar-text">¡Bienvenido, {{ user.username }}!</span>
                     <button type="button" class="btn btn-primary btn-iniciar" onclick="window.location.href='{% url 'logout' %}'">Cerrar Sesión</button>
                 {% else %}
-                    <button type="button" class="btn btn-primary btn-iniciar" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesión</button>
+                    <button type="button" class="btn btn-primary btn-iniciar" onclick="window.location.href='{% url 'login' %}'">Iniciar Sesión</button>
                 {% endif %}
             </div>
         </div>
     </nav>
-
-    <div class="modal fade {% if messages %}show{% endif %}" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" {% if messages %}style="display: block;"{% endif %}>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Iniciar Sesión</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{% url 'login' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="username">Nombre de usuario</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Introduce tu usuario" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
-                        </div>
-                        {% if messages %}
-                            <div class="alert alert-danger mt-2" role="alert">
-                                {% for message in messages %}
-                                    {{ message }}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
-                </div>
-                    </form>
-            </div>
-        </div>
-    </div>
 
     {% block body %}
     {% endblock %}
@@ -107,11 +72,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-   
-    
+    <script src="{% static 'js/main.js' %}"></script>
     {% block script %}
     {% endblock %}
 </body>
 </html>
+
+
+
 
 
