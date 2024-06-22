@@ -1,51 +1,24 @@
 {% extends './base.html' %}
+
 {% load static %}
+
+{% load crispy_forms_tags %}
+
 {% block body %}
-<div class="card registro">
-        <div class="card-header">Aún no tienes Cuenta?</div>
-        <div class="card-body">
-            <h2 id="registro">Regístrate</h2>
-            <form id="registrationForm" method="post" class="form-centered">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email" required>
-                    <small id="emailHelp" class="form-text text-muted"></small>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="confirmPassword">Repetir contraseña</label>
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Repetir contraseña" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="nombreRegistro">Nombre</label>
-                    <input type="text" class="form-control" id="nombreRegistro" placeholder="Nombre" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="apellidoRegistro">Apellido</label>
-                    <input type="text" class="form-control" id="apellidoRegistro" placeholder="Apellido" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="telRegistro">Teléfono</label>
-                    <input type="tel" class="form-control" id="telRegistro" placeholder="Teléfono" required>
-                </div>
-                <div class="form-check mb-3">
-                    <input required class="form-check-input" type="checkbox" value="confirmed" name="check" id="check">
-                    <label class="form-check-label" for="check">
-                        Desea guardar su Información?
-                    </label>
-                </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary w-100">Enviar</button>
-                </div>
-            </form>
-        </div>
+   <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2 class="text-center">Registro de Usuario</h2>
+        <form method="POST">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit" class="btn btn-primary btn-block mt-3">Registrarse</button>
+        </form>
+      </div>
     </div>
+  </div>
+
+  {% block script %}
+  <script src="{% static 'js/registro.js' %}"></script>
+  {% endblock %}
 {% endblock %}
