@@ -28,9 +28,9 @@
 
                 {% if user.is_authenticated %}
                     <span class="navbar-text">¡Bienvenido, {{ user.username }}!</span>
-                    <button type="button" class="btn btn-primary btn-iniciar" onclick="window.location.href='{% url 'logout' %}'">Cerrar Sesión</button>
+                        <a href="{% url 'logout' %}" class="btn btn-primary btn-iniciar">Cerrar Sesión</a>
                 {% else %}
-                    <button type="button" class="btn btn-primary btn-iniciar" onclick="window.location.href='{% url 'login' %}'">Iniciar Sesión</button>
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-iniciar">Iniciar Sesión</a>
                 {% endif %}
             </div>
         </div>
@@ -77,8 +77,6 @@
     {% endblock %}
 </body>
 </html>
-
-
 
 
 
