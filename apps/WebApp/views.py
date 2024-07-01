@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Comuna, Material
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from .forms import CustomUserCreationForm
+
 
 # Create your views here.
 
@@ -31,6 +33,8 @@ def cargarCotizador(request):
     
     return render(request, "cotizador.html", data)
 
+
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -49,19 +53,25 @@ def logout_view(request):
     logout(request)
     return redirect('Inicio')
 
-def cargarRegistro(request):
-    form = UserRegisterForm()
-    return render(request, 'registro.html', {'form': form})
 
 def register(request):
+    data = {
+        'form': CustomUserCreationForm()
+    }
+
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Cuenta creada para {username}!')
-            return redirect('login')
-    else:
-        form = UserRegisterForm()
-    return render(request, 'registro.html', {'form': form})
+        user_creation_form = CustomUserCreationForm(data=request.POST)
+
+        if user_creation_form.is_valid():
+            user_creation_form.save()
+
+            user = authenticate(username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
+            login(request, user)
+            return redirect('Inicio')
+        else:
+            data['form'] = user_creation_form
+
+    return render(request, 'registro.html', data)
+
+
 
