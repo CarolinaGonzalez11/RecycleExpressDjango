@@ -3,8 +3,17 @@
 {% block body %}
 <div>
     <h2 id="Cotizador">Cotiza con nosotros</h2>
+    <div class="d-flex justify-content-center">
+        <img src="{% static 'img/delivery.jpg' %}" alt="delivery" width="150px" height="150px">
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="Direccion">
+            <label for="Direccion">Dirección</label>
+            <input type="text" class="form-control" id="Direccion" name="Direccion" placeholder="Calle/Avenida/Pasaje N°">
+        </div>
+    </div>      
     <div class="input-group col-lg-6 mb-3">
-        <div class="comuna">
+       <div class="comuna">
             <label for="comuna">Comuna</label>
             <select class="form-select" id="comuna" name="comuna">
                 {% for p in comunas %}
@@ -13,12 +22,12 @@
             </select>
         </div>
 
-            <img src="{% static 'img/delivery.jpg' %}" alt="delivery" width="100px" height="100px">
+            
             <div class="Material">
                 <label for="material">Material</label>
                 <select class="form-select" id="material" name="material">
-                    {% for i in materiales %}
-                    <option value="{{ p.valorM }}">{{ i.nombre | capfirst }}</option>
+                    {% for m in materiales %}
+                    <option value="{{ m.valorM }}">{{ m.nombre | capfirst }}</option>
                 {% endfor %}
                 </select>
             </div>

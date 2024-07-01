@@ -1,8 +1,3 @@
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
     cargarCarrito();
     const btnCarrito = document.getElementById('btn-carrito');
@@ -94,15 +89,15 @@ function calcularCotizacion() {
     const medidaAncho = parseFloat(document.getElementById("ancho").value);
     const medidaAlto = parseFloat(document.getElementById("altura").value);
     const medidaLargo = parseFloat(document.getElementById("largo").value);
-    const comunaSeleccionada = document.getElementById("comuna").value;
-    const materialSeleccionado = document.getElementById("material").value;
+    const comunaSeleccionada = document.getElementById("comuna");
+    const materialSeleccionado = document.getElementById("material");
 
     if (!esValorValido(medidaAncho) || !esValorValido(medidaAlto) || !esValorValido(medidaLargo)) {
         mostrarError("Por favor, ingrese valores válidos entre 1 y 100 en ancho, alto y largo.");
         return;
     }
 
-    if (comunaSeleccionada === "0" || materialSeleccionado === "0") {
+    if (comunaSeleccionada.value === "0" || materialSeleccionado.value === "0") {
         mostrarError("Por favor, seleccione una Comuna y un Material.");
         return;
     }
@@ -125,52 +120,16 @@ function mostrarError(mensaje) {
 }
 
 function determinarValorBase(comuna, material) {
-    let valorBase = 0;
-    switch (comuna) {
-        case "1": case "4": case "5": case "8":
-            valorBase = 2500;
-            break;
-        case "2": case "3":
-            valorBase = 2000;
-            break;
-        case "6": case "7":
-            valorBase = 3000;
-            break;
-        default:
-            valorBase = 2000; // valor por defecto si la comuna no está en la lista
-    }
-
-    switch (material) {
-        case "1": case "2":
-            valorBase += 1000;
-            break;
-        case "3":
-            valorBase += 1500;
-            break;
-        case "4":
-            valorBase += 2000;
-            break;
-    }
-    return valorBase;
+    let valorComuna = parseFloat(comuna.options[comuna.selectedIndex].value);
+    let valorMaterial = parseFloat(material.options[material.selectedIndex].value);
+    return valorComuna + valorMaterial;
 }
 
 function formatearCostoComoMoneda(costo) {
     return `$${costo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 }
 
-/* Estamos agregando esta funcion
-function mostrarSpinner() {
-    const spinner = document.getElementById('spinner');
-    spinner.classList.remove('d-none');
-    pagarBtn.disabled = true;
 
-    setTimeout(() => {
-        spinner.classList.add('d-none');
-        pagarBtn.disabled = false;
-        alert('Pago realizado con éxito');
-    }, 2000); 
-}
-*/
 
 
 

@@ -1,3 +1,22 @@
+
+
+/*Estilo del Login */ 
+
+.custom-link {
+    font-size: 0.875rem; /* Tamaño de texto pequeño */
+    text-decoration: none; /* Quitar subrayado */
+}
+
+.custom-link:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+.custom-separator {
+    font-size: 0.875rem; /* Tamaño de texto pequeño */
+    color: #6c757d; /* Color de texto tenue */
+}
+ 
+ 
  /*Estilo del Carrusel */ 
  #custom-carousel {
     height: 48rem; /* Ajusta este valor para cambiar la altura del carrusel */

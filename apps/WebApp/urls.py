@@ -7,7 +7,7 @@ from .views import register
 urlpatterns = [
     path('',views.cargarInicio, name="Inicio"),
 
-    path('registro/',views.cargarRegistro, name="Registro" ),
+    path('registro/',views.register, name="register" ),
 
     path('QuienesSomos/',views.cargarQuienesSomos, name="QuienesSomos"),
 
