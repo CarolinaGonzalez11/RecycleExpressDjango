@@ -110,7 +110,7 @@ function calcularCotizacion() {
         return;
     }
 
-    if (comunaSeleccionada === "0" || materialSeleccionado === "0") {
+    if (comunaSeleccionada.value === "0" || materialSeleccionado.value === "0") {
         mostrarError("Por favor, seleccione una Comuna y un Material.");
         return;
     }
@@ -145,6 +145,7 @@ function determinarValorBase(comuna, material) {
 function formatearCostoComoMoneda(costo) {
     return `$${costo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 }
+
 
 
 

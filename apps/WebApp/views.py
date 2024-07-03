@@ -6,6 +6,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from .forms import CustomUserCreationForm
+
 
 # Create your views here.
 
@@ -35,6 +39,8 @@ def cargarCotizador(request):
 
 
 
+
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -55,6 +61,10 @@ def logout_view(request):
 
 
 def register(request):
+    data = {
+        'form': CustomUserCreationForm()
+    }
+
     data = {
         'form': CustomUserCreationForm()
     }

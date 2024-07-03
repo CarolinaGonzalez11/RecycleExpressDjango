@@ -21,10 +21,12 @@
                 {% endfor %}
             </select>
         </div>
-        <div class="Material">
-            <label for="material">Material</label>
-            <select class="form-select" id="selec-material" name="material">
-                {% for m in materiales %}
+
+            
+            <div class="Material">
+                <label for="material">Material</label>
+                <select class="form-select" id="material" name="material">
+                    {% for m in materiales %}
                     <option value="{{ m.valorM }}">{{ m.nombre | capfirst }}</option>
                 {% endfor %}
             </select>
