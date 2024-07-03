@@ -7,7 +7,7 @@ from .views import register
 urlpatterns = [
     path('',views.cargarInicio, name="Inicio"),
 
-    path('registro/',views.cargarRegistro, name="Registro" ),
+    path('registro/',views.register, name="register" ),
 
     path('QuienesSomos/',views.cargarQuienesSomos, name="QuienesSomos"),
 
@@ -19,6 +19,7 @@ urlpatterns = [
 
     path('logout/', logout_view, name='logout'),
 
+    path('map/', views.map_view, name='map-view'),
     
-    
+    path('caromap/', views.map_viewCaro, name='map-viewCaro'),
 ]

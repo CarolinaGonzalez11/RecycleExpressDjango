@@ -1,20 +1,15 @@
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
     cargarCarrito();
     const btnCarrito = document.getElementById('btn-carrito');
     const calcularBtn = document.getElementById('calcularBtn');
     const modalResultado = document.getElementById('modal-resultado');
     const agregarCarritoBtn = document.getElementById('agregarCarritoBtn');
-
+    calcularBtn.addEventListener("click", calcularCotizacion);
     btnCarrito.addEventListener('click', function() {
         mostrarCarrito();
     });
 
-    calcularBtn.addEventListener("click", calcularCotizacion);
+    
 
     modalResultado.addEventListener('hidden.bs.modal', function() {
         resetForm();
@@ -36,7 +31,12 @@ function mostrarCarrito() {
 }
 
 function agregarAlCarrito() {
-    let descripcion = document.getElementById("resultado-coti").textContent;
+    const direccion = document.getElementById("Direccion").value;
+    const nombreComuna = document.getElementById('selec-comuna').selectedOptions[0].text;
+    const valorCotizacion = document.getElementById("resultado-coti").textContent;
+
+    let descripcion = `Su retiro programado en ${direccion}, ${nombreComuna}  ${valorCotizacion}`;
+    
     let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
     carrito.push(descripcion);
     localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -52,7 +52,7 @@ function cargarCarrito() {
     let total = 0;
     carrito.forEach((item, index) => {
         let li = document.createElement('li');
-        li.textContent = item;
+        li.innerHTML = item;
         let btnEliminar = document.createElement('button');
         btnEliminar.textContent = 'Eliminar';
         btnEliminar.className = 'btn btn-danger btn-sm ms-2';
@@ -83,19 +83,27 @@ function eliminarBackdrop() {
 }
 
 function resetForm() {
+    document.getElementById("Direccion").value = '';
     document.getElementById("ancho").value = '';
     document.getElementById("altura").value = '';
     document.getElementById("largo").value = '';
-    document.getElementById("comuna").value = '0';
-    document.getElementById("material").value = '0';
+    document.getElementById("selec-comuna").value = '0';
+    document.getElementById("selec-material").value = '0';
 }
 
 function calcularCotizacion() {
+    const direccion = document.getElementById("Direccion").value;
     const medidaAncho = parseFloat(document.getElementById("ancho").value);
     const medidaAlto = parseFloat(document.getElementById("altura").value);
     const medidaLargo = parseFloat(document.getElementById("largo").value);
-    const comunaSeleccionada = document.getElementById("comuna").value;
-    const materialSeleccionado = document.getElementById("material").value;
+    const comunaSeleccionada = document.getElementById("selec-comuna").value;
+    const materialSeleccionado = document.getElementById("selec-material").value;
+
+    console.log("Medida Ancho:", medidaAncho);
+    console.log("Medida Alto:", medidaAlto);
+    console.log("Medida Largo:", medidaLargo);
+    console.log("Comuna Seleccionada:", comunaSeleccionada);
+    console.log("Material Seleccionado:", materialSeleccionado);
 
     if (!esValorValido(medidaAncho) || !esValorValido(medidaAlto) || !esValorValido(medidaLargo)) {
         mostrarError("Por favor, ingrese valores válidos entre 1 y 100 en ancho, alto y largo.");
@@ -108,10 +116,12 @@ function calcularCotizacion() {
     }
 
     let valorBase = determinarValorBase(comunaSeleccionada, materialSeleccionado);
+    console.log("Valor Base:", valorBase);
+
     let costoTotal = valorBase * (medidaAlto * medidaAncho * medidaLargo);
     const costoFormateado = formatearCostoComoMoneda(costoTotal);
 
-    document.getElementById("resultado-coti").textContent = `El valor es: ${costoFormateado}`;
+    document.getElementById("resultado-coti").textContent = ` tiene un valor de ${costoFormateado}`;
     document.getElementById("agregarCarritoBtn").style.display = "block";
 }
 
@@ -125,52 +135,18 @@ function mostrarError(mensaje) {
 }
 
 function determinarValorBase(comuna, material) {
-    let valorBase = 0;
-    switch (comuna) {
-        case "1": case "4": case "5": case "8":
-            valorBase = 2500;
-            break;
-        case "2": case "3":
-            valorBase = 2000;
-            break;
-        case "6": case "7":
-            valorBase = 3000;
-            break;
-        default:
-            valorBase = 2000; // valor por defecto si la comuna no está en la lista
-    }
-
-    switch (material) {
-        case "1": case "2":
-            valorBase += 1000;
-            break;
-        case "3":
-            valorBase += 1500;
-            break;
-        case "4":
-            valorBase += 2000;
-            break;
-    }
-    return valorBase;
+    let valorComuna = parseFloat(comuna);
+    let valorMaterial = parseFloat(material);
+    console.log("Valor Comuna:", valorComuna);
+    console.log("Valor Material:", valorMaterial);
+    return valorComuna + valorMaterial;
 }
 
 function formatearCostoComoMoneda(costo) {
     return `$${costo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 }
 
-/* Estamos agregando esta funcion
-function mostrarSpinner() {
-    const spinner = document.getElementById('spinner');
-    spinner.classList.remove('d-none');
-    pagarBtn.disabled = true;
 
-    setTimeout(() => {
-        spinner.classList.add('d-none');
-        pagarBtn.disabled = false;
-        alert('Pago realizado con éxito');
-    }, 2000); 
-}
-*/
 
 
 
