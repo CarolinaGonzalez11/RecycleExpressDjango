@@ -3,6 +3,7 @@
 
 {% block body %}
 
+
 <div id="custom-carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#custom-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -40,8 +41,112 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
+     
+</div>
+<style>
+    #map { 
+        width: 50%;
+        height: 400px; }
+</style>
+<style>
+.pie-pagina {
+    margin-top: 2O0px;
+    padding: 4px;
+    background-color: #00810024;
+    }
+</style>
+
+<style>
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+        background: #1e8d48;
+        color: white;
+        box-shadow: aliceblue;
+    }
+    .leaflet-popup-content {
+        margin: 13px 24px 13px 20px;
+        line-height: 0.5;
+    }
+    .leaflet-popup-content-wrapper {
+        padding: 0.2px;
+        text-align: center;
+        border-radius: 1px;
+    }
+
+</style>
+<style>
+    #flexmap {
+        display: flex;
+    }
+    #map { height: 400px;
+        width: 50%; }
+    #texto-mapa {
+        width: 50%;
+        padding: 20px;
+        text-align: center;
+    }
+    h5,h3 {
+        font-weight: bold;
+    }
+
+</style>
+<div id="flexmap">
+    <div id="texto-mapa">
+        <br> <h3>¡Descubre Nuestras Áreas de Servicio en Santiago!</h3> <br>
+        
+        Nos complace anunciar que nuestro servicio de retiro de residuos reciclables a domicilio está disponible en las siguientes comunas de Santiago. Consulta el mapa para ver si tu comuna está incluida y únete a nosotros en la misión de reciclar y cuidar el medio ambiente.
+        <br><br>
+        <h5>¿Tu comuna está en el mapa?</h5>
+        <br>
+        Si tu comuna aparece en el mapa, ya puedes disfrutar de nuestro servicio. Si aún no estamos en tu área, ¡pronto llegaremos! Estamos constantemente ampliando nuestra cobertura para llegar a más hogares.
+    </div>
+    <div id="map"></div>
 </div>
 
+<<<<<<< HEAD
+=======
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([-33.455562423748134, -70.69728440300989], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    function onEachFeature(feature, layer) {
+        if (feature.properties && feature.properties.COMUNA) {
+            layer.bindPopup(feature.properties.COMUNA);
+            layer.on('mouseover', function(e) {
+                this.openPopup();
+            });
+            layer.on('mouseout', function(e) {
+                this.closePopup();
+            });
+        }
+    }
+
+    // Fetch GeoJSON data and add it to the map
+    fetch("{% static 'geojson/mapa.geojson' %}")
+        .then(response => {
+            console.log('Response:', response);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('GeoJSON Data:', data);
+            L.geoJSON(data, {
+                color: 'green',
+                fillColor: 'green',
+                fillOpacity: 0.16,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        })
+        .catch(error => console.error('Error loading GeoJSON data:', error));
+
+</script>
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

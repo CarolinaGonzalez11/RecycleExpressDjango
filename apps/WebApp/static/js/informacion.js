@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', function() {
+=======
+    document.addEventListener('DOMContentLoaded', function() {
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
     const carbonFootprintElement = document.getElementById('carbon-footprint-value');
     
     async function fetchCarbonFootprint() {
@@ -7,10 +11,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
 
             // Inspect the structure of `data` in the console
+<<<<<<< HEAD
             console.log(data);
 
             // Access the correct property based on the JSON structure
             const pm25Value = data[120].realtime[0].info.rows[0].c[1].v; // Adjust this based on your JSON structure
+=======
+            console.log(response);
+            console.log(data);
+
+            // Access the correct property based on the JSON structure
+            const pm25Value = data[123].realtime[0].info.rows[0].c[1].v; // Adjust this based on your JSON structure
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
             const pm25Text = `La calidad del aire actual es de ${pm25Value} µg/m³ de PM2.5`;
             
             // Update the content of the element with a link

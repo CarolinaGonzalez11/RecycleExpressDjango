@@ -19,6 +19,7 @@ urlpatterns = [
 
     path('logout/', logout_view, name='logout'),
 
+<<<<<<< HEAD
     path('pago/', views.cargarPago, name="pago"),
 
     path('procesar_pago/', views.procesar_pago, name="procesar_pago"),
@@ -39,3 +40,9 @@ urlpatterns = [
 ]
 
     
+=======
+    path('map/', views.map_view, name='map-view'),
+    
+    path('caromap/', views.map_viewCaro, name='map-viewCaro'),
+]
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205

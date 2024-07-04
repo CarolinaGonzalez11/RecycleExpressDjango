@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const calcularBtn = document.getElementById('calcularBtn');
     const modalResultado = document.getElementById('modal-resultado');
     const agregarCarritoBtn = document.getElementById('agregarCarritoBtn');
+<<<<<<< HEAD
     const pagarBtn = document.getElementById('pagarBtn');
 
     if (btnCarrito) {
@@ -15,6 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (calcularBtn) {
         calcularBtn.addEventListener("click", calcularCotizacion);
     }
+=======
+    calcularBtn.addEventListener("click", calcularCotizacion);
+    btnCarrito.addEventListener('click', function() {
+        mostrarCarrito();
+    });
+
+    
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
 
     if (modalResultado) {
         modalResultado.addEventListener('hidden.bs.modal', function() {
@@ -59,6 +68,7 @@ function agregarAlCarrito() {
     const nombreComuna = document.getElementById('selec-comuna').selectedOptions[0].text;
     const valorCotizacion = document.getElementById("resultado-coti").textContent;
 
+<<<<<<< HEAD
     if (!/\$\d+(,\d{3})*(\.\d{2})?/.test(valorCotizacion)) {
         console.error('Formato de valorCotizacion incorrecto:', valorCotizacion);
         return;
@@ -121,6 +131,33 @@ function cargarCarrito() {
     })
     .catch(error => {
         console.error('Error:', error);
+=======
+    let descripcion = `Su retiro programado en ${direccion}, ${nombreComuna}  ${valorCotizacion}`;
+    
+    let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    carrito.push(descripcion);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    cargarCarrito();
+    cerrarModal('modal-resultado');
+    mostrarCarrito();
+}
+
+function cargarCarrito() {
+    let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    let lista = document.getElementById('listaRetiros');
+    lista.innerHTML = ''; // Limpiar lista actual
+    let total = 0;
+    carrito.forEach((item, index) => {
+        let li = document.createElement('li');
+        li.innerHTML = item;
+        let btnEliminar = document.createElement('button');
+        btnEliminar.textContent = 'Eliminar';
+        btnEliminar.className = 'btn btn-danger btn-sm ms-2';
+        btnEliminar.onclick = function() { eliminarItem(index); };
+        li.appendChild(btnEliminar);
+        lista.appendChild(li);
+        total += parseFloat(item.match(/\$([\d,.]+)/)[1].replace(/,/g, ''));
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
     });
 }
 
@@ -177,18 +214,31 @@ function calcularCotizacion() {
     const medidaLargo = parseFloat(document.getElementById("largo").value);
     const comunaSeleccionada = document.getElementById("selec-comuna").value;
     const materialSeleccionado = document.getElementById("selec-material").value;
+<<<<<<< HEAD
+=======
+
+    console.log("Medida Ancho:", medidaAncho);
+    console.log("Medida Alto:", medidaAlto);
+    console.log("Medida Largo:", medidaLargo);
+    console.log("Comuna Seleccionada:", comunaSeleccionada);
+    console.log("Material Seleccionado:", materialSeleccionado);
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
 
     if (!esValorValido(medidaAncho) || !esValorValido(medidaAlto) || !esValorValido(medidaLargo)) {
         mostrarError("Por favor, ingrese valores válidos entre 1 y 100 en ancho, alto y largo.");
         return;
     }
 
-    if (comunaSeleccionada === "0" || materialSeleccionado === "0") {
+    if (comunaSeleccionada.value === "0" || materialSeleccionado.value === "0") {
         mostrarError("Por favor, seleccione una Comuna y un Material.");
         return;
     }
 
     let valorBase = determinarValorBase(comunaSeleccionada, materialSeleccionado);
+<<<<<<< HEAD
+=======
+    console.log("Valor Base:", valorBase);
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
 
     let costoTotal = valorBase * (medidaAlto * medidaAncho * medidaLargo);
     const costoFormateado = formatearCostoComoMoneda(costoTotal);
@@ -209,6 +259,11 @@ function mostrarError(mensaje) {
 function determinarValorBase(comuna, material) {
     let valorComuna = parseFloat(comuna);
     let valorMaterial = parseFloat(material);
+<<<<<<< HEAD
+=======
+    console.log("Valor Comuna:", valorComuna);
+    console.log("Valor Material:", valorMaterial);
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
     return valorComuna + valorMaterial;
 }
 
@@ -216,6 +271,7 @@ function formatearCostoComoMoneda(costo) {
     return `$${costo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 }
 
+<<<<<<< HEAD
 // Función para obtener la cookie CSRF token
 function getCookie(name) {
     let cookieValue = null;
@@ -242,6 +298,8 @@ function getCookie(name) {
 
 
 
+=======
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
 
 
 

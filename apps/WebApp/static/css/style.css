@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .alert {
     padding: 15px;
     margin-bottom: 20px;
@@ -35,6 +36,20 @@
     
 }
 
+=======
+.overlay-image{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+    
+}
+
+>>>>>>> 331ccfe358cdf7a15c87a8a3a5f0723d1fd0d205
 .swal2-title{
     font-weight: bold;
     font-size: 1.2em;
