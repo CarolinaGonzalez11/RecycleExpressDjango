@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     fetchCarbonFootprint();
+
+    
+    
 });
+
 
 // IBA A SER HUELLA DE CARBONO, POR ESO EL NOMBRE, PERO SOLO ENCONTRAMOS CALIDAD DEL AIRE

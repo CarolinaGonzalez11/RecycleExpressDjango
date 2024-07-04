@@ -3,25 +3,31 @@
 {% block body %}
 <div>
     <h2 id="Cotizador">Cotiza con nosotros</h2>
+    <div class="d-flex justify-content-center">
+        <img src="{% static 'img/delivery.jpg' %}" alt="delivery" width="150px" height="150px">
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="Direccion">
+            <label for="Direccion">Dirección</label>
+            <input type="text" class="form-control" id="Direccion" name="Direccion" placeholder="Calle/Avenida/Pasaje N°">
+        </div>
+    </div>      
     <div class="input-group col-lg-6 mb-3">
-        <div class="comuna">
+       <div class="comuna">
             <label for="comuna">Comuna</label>
-            <select class="form-select" id="comuna" name="comuna">
+            <select class="form-select" id="selec-comuna" name="comuna">
                 {% for p in comunas %}
                     <option value="{{ p.valorC }}">{{ p.nombre | capfirst }}</option>
                 {% endfor %}
             </select>
         </div>
-
-            <img src="{% static 'img/delivery.jpg' %}" alt="delivery" width="100px" height="100px">
-            <div class="Material">
-                <label for="material">Material</label>
-                <select class="form-select" id="material" name="material">
-                    {% for i in materiales %}
-                    <option value="{{ p.valorM }}">{{ i.nombre | capfirst }}</option>
+        <div class="Material">
+            <label for="material">Material</label>
+            <select class="form-select" id="selec-material" name="material">
+                {% for m in materiales %}
+                    <option value="{{ m.valorM }}">{{ m.nombre | capfirst }}</option>
                 {% endfor %}
-                </select>
-            </div>
+            </select>
         </div>
     </div>
     <div class="input-group col-lg-6 mb-3">
@@ -38,17 +44,29 @@
             <input type="number" class="input" id="largo" name="largo" placeholder="cm">
         </div>
     </div>
-    <button id="calcularBtn" type="button" data-bs-toggle="modal" data-bs-target="#modal-resultado">Calcular</button>
+    {% if user.is_authenticated %}
+        <button id="calcularBtn" type="button" data-bs-toggle="modal" data-bs-target="#modal-resultado">Calcular</button>            
+    {% else %}
+        <h5 class="text-center">Para cotizar debes estar registrado</h5>
+        <div class="text-center">
+            <a href="{% url 'login' %}" class="btn btn-primary btn-iniciar">Iniciar Sesión</a>
+        </div>
+        
+    {% endif %}
+
     <div class="modal fade" id="modal-resultado" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
+                    <h2>Su Cotización</h2>
+                </div>
+                <div class="modal-body text-center">
                     <p id="resultado-coti">El valor es: $0</p>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer d-flex justify-content-center">
                     <button type="button" class="btn btn-primary" id="agregarCarritoBtn">Agregar a carrito</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
@@ -56,7 +74,7 @@
         </div>
     </div>
     {% block script %}
-    <script src="{% static 'js/main.js' %}"></script>
+    
     {% endblock %}
 
 {% endblock %}
